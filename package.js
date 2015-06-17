@@ -25,6 +25,7 @@ Package.onUse(function(api) {
     'ox2:tinycolor@1.1.2_1'
     ]);
   api.addFiles([
+    'lib/sliders.html',
     'lib/oo-hsl-picker.jade',
     'lib/oo-hsl-picker.js',
     'lib/oo-hsl-picker.less',
