@@ -1,0 +1,16 @@
+template(name="ooColorPicker")
+  .oo-picker-wrapper
+    input.js-colorInput(value="")
+    <button i-Color-swatch class="js-showColorPicker" style="background-color: {{currentColor}}"></button>
+    <button i-Color-swatch class="js-showColorPicker" style="background-color: {{prevColor}}"></button>
+    h4 {{hue}}, {{convertToPercent saturation}}, {{convertToPercent luminance}}
+    h4 {{hue}}, {{saturation}}, {{luminance}}
+    input.js-colorInputRgb(value="{{currentRgb}}")
+    input.js-colorInputHsl(value="{{currentHsl}}")
+    input.js-colorInputHex(value="{{currentHex}}")
+    br
+    input.js-updateHue(type="range" min="0" max="360" value="{{hue}}" step="1")
+    input.js-updateSaturation(type="range" min="0" max="1" value="{{saturation}}" step="0.01")
+    input.js-updateLuminance(type="range" min="0" max="1" value="{{luminance}}" step="0.01")
+    +slider min=0 max=360 step=1 value=H
+

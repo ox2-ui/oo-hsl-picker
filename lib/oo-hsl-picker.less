@@ -1,0 +1,79 @@
+.oo-picker-wrapper {
+  margin: 2rem;
+}
+
+// Color Swatch
+
+[i-Color-swatch] {
+  padding: 0;
+  border: 0;
+  outline: none;
+  background-color: inherit;
+
+  font-size: 1rem; // Module sizing
+  width: 5em;
+  height: 5em;
+  display: inline-block;
+  border-radius: 50%;
+  border: 1px solid #e3e3e3;
+  position: relative;
+}
+
+[i-Color-swatch-label] {
+  position: absolute;
+  bottom: -1em;
+  left: 0;
+  right: 0;
+  text-align: center;
+  background-color: rgba(63, 63, 63, 1);
+  color: #e3e3e3;
+  border: 1px solid #e3e3e3;
+  padding: .2em .2em .3em;
+  z-index: 2;
+  border-radius: 1em;
+}
+
+[i-Color-swatch-icon] {
+  position: absolute;
+  top: .48em;
+  left: .72em;
+  /* right: 0; */
+  /* text-align: center; */
+  /* background-color: rgba(84, 84, 84, 0.89); */
+  color: whitesmoke;
+  /* border: 1px solid #e3e3e3; */
+  /* padding: .2em; */
+  font-size: 2em
+}
+
+[i-Color-swatch~="is-active"] {
+  &:before {
+    content: " ";
+    width: 6.6em;
+    height: 6.6em;
+    border-radius: 50%;
+    display: inline-block;
+    position: absolute;
+    top: -.9em;
+    left: -.9em;
+    /* right: 0; */
+    /* bottom: 0; */
+    border: .3em dashed #727272;
+  }
+}
+
+[i-Color-swatch~="square"] {
+  border-radius: 0;
+}
+
+[i-Color-swatch~="small"] {
+  width: 2.5em;
+  height: 2.5em;
+}
+
+[i-Color-swatch~="extra-small"] {
+  width: 2em;
+  height: 2em;
+}
+
+// END: Color Swatch
