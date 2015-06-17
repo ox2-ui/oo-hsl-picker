@@ -26,6 +26,7 @@ Package.onUse(function(api) {
     ]);
   api.addFiles([
     'lib/oo-hsl-picker.jade',
+    'lib/inputstyles.html',
     'lib/oo-hsl-picker.js',
     'lib/oo-hsl-picker.less',
   ], C);
