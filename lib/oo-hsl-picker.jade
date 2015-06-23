@@ -1,8 +1,10 @@
 template(name="ooColorPicker")
   .oo-picker-wrapper
     input.js-colorInput(value="")
-    <button i-Color-swatch class="js-showColorPicker" style="background-color: {{currentColor}}"></button>
-    <button i-Color-swatch class="js-showColorPicker" style="background-color: {{prevColor}}"></button>
+    button(i-Color-swatch style="background-color: {{currentColor}}")
+    button(i-Color-swatch class="js-showColorPicker" style="background-color: {{prevColor}}")
+    each historyColours
+      button(i-Color-swatch style="background-color: {{color}}")
     h4 {{hue}}, {{saturation}}%, {{lightness}}%
     h4 {{hue}}, {{saturation}}, {{lightness}}
     input.js-colorInputRgb(value="{{currentRgb}}")
@@ -10,9 +12,9 @@ template(name="ooColorPicker")
     input.js-colorInputHex(value="{{currentHex}}")
     br
     +inputStyles hue=hue saturation=saturation  lightness=lightness
-    input.js-updateHue.ooSlide.hueSlide(type="range" min="0" max="360" value="{{hue}}" step="1")
-    input.js-updateSaturation.ooSlide.saturationSlide(type="range" min="0" max="100" value="{{saturation}}" step="1")
-    input.js-updateLightness.ooSlide.lightnessSlide(type="range" min="0" max="100" value="{{lightness}}" step="1")
+    input.js-updateHue.js-enableDrag.ooSlide.hueSlide(type="range" min="0" max="360" value="{{hue}}" step="1")
+    input.js-updateSaturation.js-enableDrag.ooSlide.saturationSlide(type="range" min="0" max="100" value="{{saturation}}" step="1")
+    input.js-updateLightness.js-enableDrag.ooSlide.lightnessSlide(type="range" min="0" max="100" value="{{lightness}}" step="1")
     //- +ooHslPickerHueSlider saturation=saturation  lightness=lightness
     //- +ooHslPickerSaturationSlider hue=hue lightness=lightness
     //- +ooHslPickerLightnessSlider hue=hue saturation=saturation
