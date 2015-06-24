@@ -2,9 +2,9 @@ template(name="ooColorPicker")
   .oo-picker-wrapper
     input.js-colorInput(value="")
     button(i-Color-swatch style="background-color: hsl({{hue}}, {{saturation}}%, {{lightness}}%)")
-    button(i-Color-swatch class="js-showColorPicker" style="background-color: {{prevColor}}")
+    button.js-setPreviuosColor(i-Color-swatch class="js-showColorPicker" style="background-color: {{prevColor}}" data-color="{{prevColor}}")
     each historyColours
-      button(i-Color-swatch style="background-color: {{color}}")
+      button.js-setHistoryColor(i-Color-swatch style="background-color: {{color}}")
     h4 {{hue}}, {{saturation}}%, {{lightness}}%
     h4 {{hue}}, {{saturation}}, {{lightness}}
     input.js-colorInputRgb(value="{{currentRgb}}")
