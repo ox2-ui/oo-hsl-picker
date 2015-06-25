@@ -1,36 +1,31 @@
 template(name="ooColorPicker")
   .oo-picker-wrapper
-    input.js-colorInput(value="")
-    button(i-Color-swatch style="background-color: hsl({{hue}}, {{saturation}}%, {{lightness}}%)")
-    button.js-setPreviuosColor(i-Color-swatch class="js-showColorPicker" style="background-color: {{prevColor}}" data-color="{{prevColor}}")
+    .header-section
+      h4 {{hue}}, {{saturation}}%, {{lightness}}%
+    .header-section
+      h4 {{rgbString}} {{hslString}} {{hexString}}
+    .header-section
+      input.js-colorInput(value="")
+    .swatches
+      button(i-Color-swatch="push" style="background-color: hsl({{hue}}, {{saturation}}%, {{lightness}}%)")
+      button.js-setPreviuosColor(i-Color-swatch="push" class="js-showColorPicker" style="background-color: {{prevColor}}" data-color="{{prevColor}}")
+    .hsl-controls
+      input.js-updateHue.js-enableDrag.ooSlide.hueSlide(type="range" min="0" max="360" value="{{hue}}" step="1" $dyn = hueGradient )
+      input.js-updateSaturation.js-enableDrag.ooSlide.saturationSlide(type="range" min="0" max="100" value="{{saturation}}" step="1" $dyn = saturationGradient)
+      input.js-updateLightness.js-enableDrag.ooSlide.lightnessSlide(type="range" min="0" max="100" value="{{lightness}}" step="1" $dyn = lightnessGradient)
+    .header-section()
+      h4 History
     each historyColours
-      button.js-setHistoryColor(i-Color-swatch style="background-color: {{color}}")
-    h4 {{hue}}, {{saturation}}%, {{lightness}}%
-    h4 {{hue}}, {{saturation}}, {{lightness}}
-    input.js-colorInputRgb(value="{{currentRgb}}")
-    input.js-colorInputHsl(value="{{currentHsl}}")
-    input.js-colorInputHex(value="{{currentHex}}")
-    br
-    //- +inputStyles hue=hue saturation=saturation  lightness=lightness
-    input.js-updateHue.js-enableDrag.ooSlide.hueSlide(type="range" min="0" max="360" value="{{hue}}" step="1" $dyn = hueGradient )
-    input.js-updateSaturation.js-enableDrag.ooSlide.saturationSlide(type="range" min="0" max="100" value="{{saturation}}" step="1" $dyn = saturationGradient)
-    input.js-updateLightness.js-enableDrag.ooSlide.lightnessSlide(type="range" min="0" max="100" value="{{lightness}}" step="1" $dyn = lightnessGradient)
-    //- +ooHslPickerHueSlider saturation=saturation  lightness=lightness
-    //- +ooHslPickerSaturationSlider hue=hue lightness=lightness
-    //- +ooHslPickerLightnessSlider hue=hue saturation=saturation
-    //- +slider2 min=0 max=360 step=1 value=hue saturation=saturation  lightness=lightness
-    //- +slider3 min=0 max=100 step=1 value=saturation hue=hue  lightness=lightness
-    //- +slider4 min=0 max=100 step=1 value=lightness saturation=saturation  hue=hue
-    //- +ooColorSlider min=0 max=100 step=1 value=lightness saturation=saturation  hue=hue type="ooHslPickerLightnessSlider"
-
-//- template(name="ooColorSlider")
-//-   +Template.dynamic template=type
-
-template(name="ooHslPickerHueSlider")
-  .color-slider(style="background: linear-gradient(to right, hsla(0, {{saturation}}%, {{lightness}}%, 1),hsla(10, {{saturation}}%, {{lightness}}%, 1),hsla(20, {{saturation}}%, {{lightness}}%, 1),hsla(30, {{saturation}}%, {{lightness}}%, 1),hsla(40, {{saturation}}%, {{lightness}}%, 1),hsla(50, {{saturation}}%, {{lightness}}%, 1),hsla(60, {{saturation}}%, {{lightness}}%, 1),hsla(70, {{saturation}}%, {{lightness}}%, 1),hsla(80, {{saturation}}%, {{lightness}}%, 1),hsla(90, {{saturation}}%, {{lightness}}%, 1),hsla(100, {{saturation}}%, {{lightness}}%, 1),hsla(110, {{saturation}}%, {{lightness}}%, 1),hsla(120, {{saturation}}%, {{lightness}}%, 1),hsla(130, {{saturation}}%, {{lightness}}%, 1),hsla(140, {{saturation}}%, {{lightness}}%, 1),hsla(150, {{saturation}}%, {{lightness}}%, 1),hsla(160, {{saturation}}%, {{lightness}}%, 1),hsla(170, {{saturation}}%, {{lightness}}%, 1),hsla(180, {{saturation}}%, {{lightness}}%, 1),hsla(190, {{saturation}}%, {{lightness}}%, 1),hsla(200, {{saturation}}%, {{lightness}}%, 1),hsla(210, {{saturation}}%, {{lightness}}%, 1),hsla(220, {{saturation}}%, {{lightness}}%, 1),hsla(230, {{saturation}}%, {{lightness}}%, 1),hsla(240, {{saturation}}%, {{lightness}}%, 1),hsla(250, {{saturation}}%, {{lightness}}%, 1),hsla(260, {{saturation}}%, {{lightness}}%, 1),hsla(270, {{saturation}}%, {{lightness}}%, 1),hsla(280, {{saturation}}%, {{lightness}}%, 1),hsla(290, {{saturation}}%, {{lightness}}%, 1),hsla(300, {{saturation}}%, {{lightness}}%, 1),hsla(310, {{saturation}}%, {{lightness}}%, 1),hsla(320, {{saturation}}%, {{lightness}}%, 1),hsla(330, {{saturation}}%, {{lightness}}%, 1),hsla(340, {{saturation}}%, {{lightness}}%, 1),hsla(350, {{saturation}}%, {{lightness}}%, 1),hsla(360, {{saturation}}%, {{lightness}}%, 1));")
-
-template(name="ooHslPickerSaturationSlider")
-  .color-slider(style="background: linear-gradient(to right, hsla({{hue}}, 0%, {{lightness}}%, 1),hsla({{hue}}, 20%, {{lightness}}%, 1),hsla({{hue}}, 40%, {{lightness}}%, 1),hsla({{hue}}, 60%, {{lightness}}%, 1),hsla({{hue}}, 80%, {{lightness}}%, 1),hsla({{hue}}, 100%, {{lightness}}%, 1));")
-
-template(name="ooHslPickerLightnessSlider")
-  .color-slider(style="background: linear-gradient(to right, hsla({{hue}}, {{saturation}}%, 0%, 1), hsla({{hue}}, {{saturation}}%, 20%, 1), hsla({{hue}}, {{saturation}}%, 40%, 1), hsla({{hue}}, {{saturation}}%, 60%, 1), hsla({{hue}}, {{saturation}}%, 80%, 1), hsla({{hue}}, {{saturation}}%, 100%, 1)); ")
+      button.animation-fadeIn.js-setHistoryColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
+    .header-section
+      h4 Random
+        button.js-setRandomColorType(btn="neutral-dim push-all" data-color="red") Red
+        button.js-setRandomColorType(btn="neutral-dim push-all" data-color="orange") Orange
+        button.js-setRandomColorType(btn="neutral-dim push-all" data-color="yellow") Yellow
+        button.js-setRandomColorType(btn="neutral-dim push-all" data-color="green") Green
+        button.js-setRandomColorType(btn="neutral-dim push-all" data-color="blue") Blue
+        button.js-setRandomColorType(btn="neutral-dim push-all" data-color="purple") Purple
+        button.js-setRandomColorType(btn="neutral-dim push-all" data-color="pink") Pink
+        button.js-setRandomColorType(btn="neutral-dim push-all" data-color="monochrome") Monochrome
+    each randomColors
+      button.animation-fadeIn.js-setRandomColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")

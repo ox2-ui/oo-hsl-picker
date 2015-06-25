@@ -1,5 +1,48 @@
 .oo-picker-wrapper {
-  margin: 2rem;
+  background-color: hsla(0, 0%, 50%, 1);
+  background-color: hsla(204, 5%, 23%, 1);
+  padding: 2rem;
+}
+
+.header-section {
+  background-color: hsla(204, 5%, 18%, 1);
+  color: white;
+  padding: .3rem 1rem;
+}
+
+.swatches {
+  padding: 2rem;
+}
+
+.hsl-controls {
+  padding: 2rem;
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(1.1, 1.1, 1.1);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
+.pulse {
+  animation: pulse 1s;
+}
+
+@keyframes fadeIn {
+  0%   { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+.animation-fadeIn {
+  animation: pulse .6s;
 }
 
 .color-slider {
@@ -75,9 +118,13 @@
     left: -.9em;
     /* right: 0; */
     /* bottom: 0; */
+    border: .3em dashed hsl(0, 0%, 86%);
     border: .3em dashed #727272;
+    animation: pulse .6s;
   }
 }
+
+
 
 [i-Color-swatch~="square"] {
   border-radius: 0;
@@ -86,11 +133,26 @@
 [i-Color-swatch~="small"] {
   width: 2.5em;
   height: 2.5em;
+
+  &[i-Color-swatch~="is-active"] {
+    &:before {
+      width: 4em;
+      height: 4em;
+      border: .2em dashed #727272;
+
+    }
+  }
 }
+
+
 
 [i-Color-swatch~="extra-small"] {
   width: 2em;
   height: 2em;
+}
+
+[i-Color-swatch~="push"] {
+  margin: 1.4rem;
 }
 
 // END: Color Swatch
