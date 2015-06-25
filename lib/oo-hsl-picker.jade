@@ -28,4 +28,4 @@ template(name="ooColorPicker")
         button.js-setRandomColorType(btn="neutral-dim push-all" data-color="pink") Pink
         button.js-setRandomColorType(btn="neutral-dim push-all" data-color="monochrome") Monochrome
     each randomColors
-      button.animation-fadeIn.js-setRandomColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
+      button.animation-fadeIn.transition-back.js-setRandomColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
