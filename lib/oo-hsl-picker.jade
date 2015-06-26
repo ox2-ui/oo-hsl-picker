@@ -19,6 +19,8 @@ template(name="ooColorPicker")
       input.js-updateLightness.js-enableDrag.ooSlide.lightnessSlide(type="range" min="0" max="100" value="{{lightness}}" step="1" $dyn = lightnessGradient)
     .header-section()
       h4 History
+      button.js-setHistoryAction(btn="tiny neutral-dim" data-action="addToFavorites") Add To Favorites
+      button.js-setHistoryAction(btn="tiny neutral-dim" data-action="select") Select
     each historyColors
       button.animation-fadeIn.js-setHistoryColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
     .header-section()
@@ -51,5 +53,7 @@ template(name="ooColorPicker")
       h4 Random
         each randomHueButtons
           button.js-setRandomColorType(btn="neutral-dim push-all capitalize" data-color="{{this}}") {{this}}
+      button.js-setRandomAction(btn="tiny neutral-dim" data-action="addToFavorites") Add To Favorites
+      button.js-setRandomAction(btn="tiny neutral-dim" data-action="select") Select
     each randomColors
       button.animation-fadeIn.transition-back.js-setRandomColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
