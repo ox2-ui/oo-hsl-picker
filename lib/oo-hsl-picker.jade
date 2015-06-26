@@ -13,12 +13,35 @@ template(name="ooColorPicker")
       input.js-updateHue.js-enableDrag.ooSlide.hueSlide(type="range" min="0" max="360" value="{{hue}}" step="1" $dyn = hueGradient )
       input.js-updateSaturation.js-enableDrag.ooSlide.saturationSlide(type="range" min="0" max="100" value="{{saturation}}" step="1" $dyn = saturationGradient)
       input.js-updateLightness.js-enableDrag.ooSlide.lightnessSlide(type="range" min="0" max="100" value="{{lightness}}" step="1" $dyn = lightnessGradient)
+    //- .header-section
+    //-   h4 Color Scheme
+    //-     each colorSchemeButtons
+    //-       button.js-setColorSchemeType(btn="neutral-dim push-all capitalize" data-scheme="{{this}}") {{this}}
+
     .header-section
-      h4 Color Scheme
-        each colorSchemeButtons
-          button.js-setColorSchemeType(btn="neutral-dim push-all capitalize" data-scheme="{{this}}") {{this}}
-    each colorScheme
-      button.animation-fadeIn.transition-back.js-setRandomColor(i-Color-swatch="push {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
+      h4 Analagous
+    each schemeAnalagous
+      button.animation-fadeIn.transition-back.js-setRandomColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
+    .header-section
+      h4 Complements
+    each schemeComplements
+      button.animation-fadeIn.transition-back.js-setRandomColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
+    .header-section
+      h4 Split Complements
+    each schemeSplitComplements
+      button.animation-fadeIn.transition-back.js-setRandomColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
+    .header-section
+      h4 Triadic
+    each schemeTriadic
+      button.animation-fadeIn.transition-back.js-setRandomColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
+    .header-section
+      h4 Tetradic
+    each schemeTetradic
+      button.animation-fadeIn.transition-back.js-setRandomColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
+    .header-section
+      h4 Monochromatic
+    each schemeMonochromatic
+      button.animation-fadeIn.transition-back.js-setRandomColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
     .header-section()
       h4 History
     each historyColours
