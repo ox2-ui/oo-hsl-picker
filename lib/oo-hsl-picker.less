@@ -66,6 +66,37 @@
   }
 }
 
+
+// Tab control
+
+[i-Tab-control] {
+  &:extend(.unstyled-button);
+  color: whitesmoke;
+  font-size: 1.2rem;
+  padding: .3em .5em;
+  border: 1px solid whitesmoke;
+  border-right: none;
+}
+
+[i-Tab-control~="first"] {
+  border-top-left-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+[i-Tab-control~="last"] {
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  border-right: 1px solid whitesmoke;
+}
+
+[i-Tab-control~="is-active"] {
+  background-color: whitesmoke;
+  color: #777;
+}
+
+// END: Tab control
+
+
 // Color Swatch
 
 [i-Color-swatch] {

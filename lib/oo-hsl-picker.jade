@@ -13,19 +13,19 @@ template(name="ooColorPicker")
       input.js-updateHue.js-enableDrag.ooSlide.hueSlide(type="range" min="0" max="360" value="{{hue}}" step="1" $dyn = hueGradient )
       input.js-updateSaturation.js-enableDrag.ooSlide.saturationSlide(type="range" min="0" max="100" value="{{saturation}}" step="1" $dyn = saturationGradient)
       input.js-updateLightness.js-enableDrag.ooSlide.lightnessSlide(type="range" min="0" max="100" value="{{lightness}}" step="1" $dyn = lightnessGradient)
+    .header-section
+      h4 Color Scheme
+        each colorSchemeButtons
+          button.js-setColorSchemeType(btn="neutral-dim push-all capitalize" data-scheme="{{this}}") {{this}}
+    each colorScheme
+      button.animation-fadeIn.transition-back.js-setRandomColor(i-Color-swatch="push {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
     .header-section()
       h4 History
     each historyColours
       button.animation-fadeIn.js-setHistoryColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
     .header-section
       h4 Random
-        button.js-setRandomColorType(btn="neutral-dim push-all" data-color="red") Red
-        button.js-setRandomColorType(btn="neutral-dim push-all" data-color="orange") Orange
-        button.js-setRandomColorType(btn="neutral-dim push-all" data-color="yellow") Yellow
-        button.js-setRandomColorType(btn="neutral-dim push-all" data-color="green") Green
-        button.js-setRandomColorType(btn="neutral-dim push-all" data-color="blue") Blue
-        button.js-setRandomColorType(btn="neutral-dim push-all" data-color="purple") Purple
-        button.js-setRandomColorType(btn="neutral-dim push-all" data-color="pink") Pink
-        button.js-setRandomColorType(btn="neutral-dim push-all" data-color="monochrome") Monochrome
+        each randomHueButtons
+          button.js-setRandomColorType(btn="neutral-dim push-all capitalize" data-color="{{this}}") {{this}}
     each randomColors
       button.animation-fadeIn.transition-back.js-setRandomColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
