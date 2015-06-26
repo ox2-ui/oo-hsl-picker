@@ -40,6 +40,20 @@
   }
 }
 
+@keyframes largePulse {
+  0% {
+    transform: scale3d(1, 1, 1);
+  }
+
+  50% {
+    transform: scale3d(2, 2, 2);
+  }
+
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+
 .pulse {
   animation: pulse 1s;
 }
@@ -120,6 +134,15 @@
   border-radius: 50%;
   border: 1px solid #e3e3e3;
   position: relative;
+
+  i {
+    color: white;
+    position: absolute;
+    font-size: .5rem;
+    right: -.9em;
+    top: -0.9em;
+    animation: largePulse .8s;
+  }
 }
 
 [i-Color-swatch-label] {

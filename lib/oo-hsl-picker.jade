@@ -23,6 +23,8 @@ template(name="ooColorPicker")
       button.js-setHistoryAction(btn="tiny neutral-dim" data-action="select") Select
     each historyColors
       button.animation-fadeIn.js-setHistoryColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
+          if isFavoritedColor
+            i.ico-star
     .header-section()
       h4 Favorites
     each favoriteColors
@@ -34,21 +36,33 @@ template(name="ooColorPicker")
     h5.scheme-title Analagous
     each schemeAnalagous
       button.animation-fadeIn.transition-back.js-setSchemeColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
+          if isFavoritedColor
+            i.ico-star
     h5.scheme-title Complements
     each schemeComplements
       button.animation-fadeIn.transition-back.js-setSchemeColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
+          if isFavoritedColor
+            i.ico-star
     h5.scheme-title Split Complements
     each schemeSplitComplements
       button.animation-fadeIn.transition-back.js-setSchemeColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
+          if isFavoritedColor
+            i.ico-star
     h5.scheme-title Triadic
     each schemeTriadic
       button.animation-fadeIn.transition-back.js-setSchemeColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
+          if isFavoritedColor
+            i.ico-star
     h5.scheme-title Tetradic
     each schemeTetradic
       button.animation-fadeIn.transition-back.js-setSchemeColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
+          if isFavoritedColor
+            i.ico-star
     h5.scheme-title Monochromatic
     each schemeMonochromatic
       button.animation-fadeIn.transition-back.js-setSchemeColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
+          if isFavoritedColor
+            i.ico-star
     .header-section
       h4 Random
         each randomHueButtons
@@ -57,3 +71,5 @@ template(name="ooColorPicker")
       button.js-setRandomAction(btn="tiny neutral-dim" data-action="select") Select
     each randomColors
       button.animation-fadeIn.transition-back.js-setRandomColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
+          if isFavoritedColor
+            i.ico-star
