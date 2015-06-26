@@ -9,15 +9,18 @@ template(name="ooColorPicker")
     .swatches
       button(i-Color-swatch="push" style="background-color: hsl({{hue}}, {{saturation}}%, {{lightness}}%)")
       button.js-setPreviuosColor(i-Color-swatch="push" class="js-showColorPicker" style="background-color: {{prevColor}}" data-color="{{prevColor}}")
+      button.js-lightenColor(btn="neutral-dim") +
+      button.js-darkenColor(btn="neutral-dim") -
+      button.js-saturateColor(btn="neutral-dim") +
+      button.js-desaturateColor(btn="neutral-dim") -
     .hsl-controls
       input.js-updateHue.js-enableDrag.ooSlide.hueSlide(type="range" min="0" max="360" value="{{hue}}" step="1" $dyn = hueGradient )
       input.js-updateSaturation.js-enableDrag.ooSlide.saturationSlide(type="range" min="0" max="100" value="{{saturation}}" step="1" $dyn = saturationGradient)
       input.js-updateLightness.js-enableDrag.ooSlide.lightnessSlide(type="range" min="0" max="100" value="{{lightness}}" step="1" $dyn = lightnessGradient)
-    //- .header-section
-    //-   h4 Color Scheme
-    //-     each colorSchemeButtons
-    //-       button.js-setColorSchemeType(btn="neutral-dim push-all capitalize" data-scheme="{{this}}") {{this}}
-
+    .header-section()
+      h4 History
+    each historyColours
+      button.animation-fadeIn.js-setHistoryColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
     .header-section
       h4 Analagous
     each schemeAnalagous
@@ -42,10 +45,6 @@ template(name="ooColorPicker")
       h4 Monochromatic
     each schemeMonochromatic
       button.animation-fadeIn.transition-back.js-setRandomColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
-    .header-section()
-      h4 History
-    each historyColours
-      button.animation-fadeIn.js-setHistoryColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
     .header-section
       h4 Random
         each randomHueButtons
