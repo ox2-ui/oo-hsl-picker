@@ -1,68 +1,43 @@
+template(name="ooColorSwatch")
+  button(class="{{classList}} {{#if isActive}} is-active {{/if}}" data-i-Color-swatch="{{oo}} ")
+      span.swatch-fill(style="background-color: {{color}}")
+      if showStarBadge
+        i.ico-star
+
 template(name="ooColorPicker")
   .oo-picker-wrapper
     .header-section
-      h4 {{hue}}, {{saturation}}%, {{lightness}}%
+      h4 {{hue}}, {{saturation}}%, {{lightness}}%, {{alpha}}
     .header-section
       h4 {{rgbString}} {{hslString}} {{hexString}}
     .header-section
       input.js-colorInput(value="")
     .swatches
-      button(i-Color-swatch="push" style="background-color: hsl({{hue}}, {{saturation}}%, {{lightness}}%)")
-      button.js-setPreviuosColor(i-Color-swatch="push" class="js-showColorPicker" style="background-color: {{prevColor}}" data-color="{{prevColor}}")
+      +ooColorSwatch classList="js-colorSwatch" color=hslaString oo="no-transition"
+      +ooColorSwatch classList="js-setPreviuosColor" color=prevColor oo="no-transition"
       button.js-lightenColor(btn="neutral-dim") +
       button.js-darkenColor(btn="neutral-dim") -
       button.js-saturateColor(btn="neutral-dim") +
       button.js-desaturateColor(btn="neutral-dim") -
     .hsl-controls
-      input.js-updateHue.js-enableDrag.ooSlide.hueSlide(type="range" min="0" max="360" value="{{hue}}" step="1" $dyn = hueGradient )
-      input.js-updateSaturation.js-enableDrag.ooSlide.saturationSlide(type="range" min="0" max="100" value="{{saturation}}" step="1" $dyn = saturationGradient)
-      input.js-updateLightness.js-enableDrag.ooSlide.lightnessSlide(type="range" min="0" max="100" value="{{lightness}}" step="1" $dyn = lightnessGradient)
+      .colorSliderWrapper
+        input.js-updateHue.js-enableDrag.ooSlide.hueSlide(type="range" min="0" max="360" value=hue step="1" $dyn = hueGradient )
+      .colorSliderWrapper
+        input.js-updateSaturation.js-enableDrag.ooSlide.saturationSlide(type="range" min="0" max="100" value=saturation step="1" $dyn = saturationGradient)
+      .colorSliderWrapper
+        input.js-updateLightness.js-enableDrag.ooSlide.lightnessSlide(type="range" min="0" max="100" value=lightness step="1" $dyn = lightnessGradient)
+      .colorSliderWrapper
+        input.js-updateAlpha.js-enableDrag.ooSlide(type="range" min="0" max="100" value=alphaPercent step="1" $dyn = alphaGradient)
     .header-section()
       h4 History
       button.js-setHistoryAction(btn="tiny neutral-dim" data-action="addToFavorites") Add To Favorites
       button.js-setHistoryAction(btn="tiny neutral-dim" data-action="select") Select
     each historyColors
-      button.animation-fadeIn.js-setHistoryColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
-          if isFavoritedColor
-            i.ico-star
+      +ooColorSwatch classList="js-setHistoryColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
     .header-section()
       h4 Favorites
     each favoriteColors
-      button.animation-fadeIn.js-setFavoriteColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
-    .header-section
-      h4 Schemes
-      button.js-setSchemeAction(btn="tiny neutral-dim" data-action="addToFavorites") Add To Favorites
-      button.js-setSchemeAction(btn="tiny neutral-dim" data-action="select") Select
-    h5.scheme-title Analagous
-    each schemeAnalagous
-      button.animation-fadeIn.transition-back.js-setSchemeColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
-          if isFavoritedColor
-            i.ico-star
-    h5.scheme-title Complements
-    each schemeComplements
-      button.animation-fadeIn.transition-back.js-setSchemeColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
-          if isFavoritedColor
-            i.ico-star
-    h5.scheme-title Split Complements
-    each schemeSplitComplements
-      button.animation-fadeIn.transition-back.js-setSchemeColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
-          if isFavoritedColor
-            i.ico-star
-    h5.scheme-title Triadic
-    each schemeTriadic
-      button.animation-fadeIn.transition-back.js-setSchemeColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
-          if isFavoritedColor
-            i.ico-star
-    h5.scheme-title Tetradic
-    each schemeTetradic
-      button.animation-fadeIn.transition-back.js-setSchemeColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
-          if isFavoritedColor
-            i.ico-star
-    h5.scheme-title Monochromatic
-    each schemeMonochromatic
-      button.animation-fadeIn.transition-back.js-setSchemeColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
-          if isFavoritedColor
-            i.ico-star
+      +ooColorSwatch classList="js-setFavoriteColor" oo="push small" color=color isActive=isSelectedColor
     .header-section
       h4 Random
         each randomHueButtons
@@ -70,6 +45,27 @@ template(name="ooColorPicker")
       button.js-setRandomAction(btn="tiny neutral-dim" data-action="addToFavorites") Add To Favorites
       button.js-setRandomAction(btn="tiny neutral-dim" data-action="select") Select
     each randomColors
-      button.animation-fadeIn.transition-back.js-setRandomColor(i-Color-swatch="push small {{#if isSelectedColor}} is-active {{/if}}" style="background-color: {{color}}")
-          if isFavoritedColor
-            i.ico-star
+      +ooColorSwatch classList="js-setRandomColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
+    .header-section
+      h4 Schemes
+      button.js-setSchemeAction(btn="tiny neutral-dim" data-action="addToFavorites") Add To Favorites
+      button.js-setSchemeAction(btn="tiny neutral-dim" data-action="select") Select
+    h5.scheme-title Analagous
+    each schemeAnalagous
+      +ooColorSwatch classList="js-setSchemeColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
+    h5.scheme-title Complements
+    each schemeComplements
+      +ooColorSwatch classList="js-setSchemeColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
+    h5.scheme-title Split Complements
+    each schemeSplitComplements
+      +ooColorSwatch classList="js-setSchemeColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
+    h5.scheme-title Triadic
+    each schemeTriadic
+      +ooColorSwatch classList="js-setSchemeColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
+    h5.scheme-title Tetradic
+    each schemeTetradic
+      +ooColorSwatch classList="js-setSchemeColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
+    h5.scheme-title Monochromatic
+    each schemeMonochromatic
+      +ooColorSwatch classList="js-setSchemeColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
+

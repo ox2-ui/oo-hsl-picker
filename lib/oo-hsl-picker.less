@@ -121,11 +121,11 @@
 
 // Color Swatch
 
-[i-Color-swatch] {
+[data-i-Color-swatch] {
   padding: 0;
   border: 0;
   outline: none;
-  background-color: inherit;
+  background-color: transparent;
 
   font-size: 1rem; // Module sizing
   width: 5em;
@@ -133,7 +133,34 @@
   display: inline-block;
   border-radius: 50%;
   border: 1px solid #e3e3e3;
+
   position: relative;
+
+  background-image: linear-gradient(45deg, rgba(255,255,255,0.2) 25%,transparent 25%,transparent 75%,rgba(255,255,255,0.2) 75%,rgba(255,255,255,0.2)),linear-gradient(45deg, rgba(255,255,255,0.2) 25%,transparent 25%,transparent 75%,rgba(255,255,255,0.2) 75%,rgba(255,255,255,0.2));
+  background-size: 20px 20px;
+  background-position: 0px 0px, 10px 10px;
+
+
+
+  animation: pulse .6s;
+
+  &.is-active {
+    &:before {
+      content: " ";
+      width: 6.6em;
+      height: 6.6em;
+      border-radius: 50%;
+      display: inline-block;
+      position: absolute;
+      top: -.9em;
+      left: -.9em;
+      /* right: 0; */
+      /* bottom: 0; */
+      border: .3em dashed hsl(0, 0%, 86%);
+      border: .3em dashed #727272;
+      animation: pulse .6s;
+    }
+  }
 
   i {
     color: white;
@@ -143,9 +170,16 @@
     top: -0.9em;
     animation: largePulse .8s;
   }
+
+  .swatch-fill {
+    display: block;
+    height: 100%;
+    transition: background-color .6s;
+  }
+
 }
 
-[i-Color-swatch-label] {
+[data-i-Color-swatch-label] {
   position: absolute;
   bottom: -1em;
   left: 0;
@@ -159,7 +193,7 @@
   border-radius: 1em;
 }
 
-[i-Color-swatch-icon] {
+[data-i-Color-swatch-icon] {
   position: absolute;
   top: .48em;
   left: .72em;
@@ -172,35 +206,32 @@
   font-size: 2em
 }
 
-[i-Color-swatch~="is-active"] {
-  &:before {
-    content: " ";
-    width: 6.6em;
-    height: 6.6em;
-    border-radius: 50%;
-    display: inline-block;
-    position: absolute;
-    top: -.9em;
-    left: -.9em;
-    /* right: 0; */
-    /* bottom: 0; */
-    border: .3em dashed hsl(0, 0%, 86%);
-    border: .3em dashed #727272;
-    animation: pulse .6s;
-  }
-}
 
 
 
-[i-Color-swatch~="square"] {
+
+[data-i-Color-swatch~="square"] {
   border-radius: 0;
 }
 
-[i-Color-swatch~="small"] {
+[data-i-Color-swatch~="small"] {
   width: 2.5em;
   height: 2.5em;
+  background-size: 10px 10px;
+  background-position: 0px 0px, 5px 5px;
 
-  &[i-Color-swatch~="is-active"] {
+
+  .swatch-fill {
+    width: 2.5em;
+    height: 2.5em;
+  }
+
+  &:before {
+    width: 2.5em;
+    height: 2.5em;
+  }
+
+  &.is-active {
     &:before {
       width: 4em;
       height: 4em;
@@ -212,26 +243,61 @@
 
 
 
-[i-Color-swatch~="extra-small"] {
+[data-i-Color-swatch~="extra-small"] {
   width: 2em;
   height: 2em;
 }
 
-[i-Color-swatch~="push"] {
+[data-i-Color-swatch~="push"] {
   margin: 1.4rem;
 }
+
+[data-i-Color-swatch~="no-transition"] {
+
+  .swatch-fill {
+    transition: background-color 0s;
+  }
+}
+
+
 
 // END: Color Swatch
 
 // Range
 //
 
+.colorSliderWrapper {
+  background-image: linear-gradient(45deg, rgba(255,255,255,0.2) 25%,transparent 25%,transparent 75%,rgba(255,255,255,0.2) 75%,rgba(255,255,255,0.2)),linear-gradient(45deg, rgba(255,255,255,0.2) 25%,transparent 25%,transparent 75%,rgba(255,255,255,0.2) 75%,rgba(255,255,255,0.2));
+  background-size: 20px 20px;
+  background-position: 0px 0px, 10px 10px;
+
+  height: 23px;
+  margin: 1.5rem 0;
+  border-radius: 9.7px;
+}
+
+.alphaSlider {
+  &:before {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    content: "";
+    border-radius: 15px;
+    background-image: linear-gradient(45deg, rgba(255,255,255,0.2) 25%,transparent 25%,transparent 75%,rgba(255,255,255,0.2) 75%,rgba(255,255,255,0.2)),linear-gradient(45deg, rgba(255,255,255,0.2) 25%,transparent 25%,transparent 75%,rgba(255,255,255,0.2) 75%,rgba(255,255,255,0.2));
+    background-size: 20px 20px;
+    background-position: 0px 0px, 10px 10px
+  }
+}
+
 input[type=range].ooSlide {
   -webkit-appearance: none;
   width: 100%;
-  margin: 6.5px 0;
   user-select: none;
   border-radius: 9.7px;
+  position: relative;
+    background-color: transparent;
 }
 input[type=range].ooSlide:focus {
   outline: none;
