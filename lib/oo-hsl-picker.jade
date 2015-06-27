@@ -1,5 +1,5 @@
 template(name="ooColorSwatch")
-  button(class="{{classList}} {{#if isActive}} is-active {{/if}}" data-i-Color-swatch="{{oo}} ")
+  button(class="{{classList}} {{#if isActive}}is-active{{/if}}" data-i-Color-swatch="{{oo}} ")
       span.swatch-fill(style="background-color: {{color}}")
       if showStarBadge
         i.ico-star
@@ -21,11 +21,11 @@ template(name="ooColorPicker")
       button.js-desaturateColor(btn="neutral-dim") -
     .hsl-controls
       .colorSliderWrapper
-        input.js-updateHue.js-enableDrag.ooSlide.hueSlide(type="range" min="0" max="360" value=hue step="1" $dyn = hueGradient )
+        input.js-updateHue.js-enableDrag.ooSlide(type="range" min="0" max="360" value=hue step="1" $dyn = hueGradient )
       .colorSliderWrapper
-        input.js-updateSaturation.js-enableDrag.ooSlide.saturationSlide(type="range" min="0" max="100" value=saturation step="1" $dyn = saturationGradient)
+        input.js-updateSaturation.js-enableDrag.ooSlide(type="range" min="0" max="100" value=saturation step="1" $dyn = saturationGradient)
       .colorSliderWrapper
-        input.js-updateLightness.js-enableDrag.ooSlide.lightnessSlide(type="range" min="0" max="100" value=lightness step="1" $dyn = lightnessGradient)
+        input.js-updateLightness.js-enableDrag.ooSlide(type="range" min="0" max="100" value=lightness step="1" $dyn = lightnessGradient)
       .colorSliderWrapper
         input.js-updateAlpha.js-enableDrag.ooSlide(type="range" min="0" max="100" value=alphaPercent step="1" $dyn = alphaGradient)
     .header-section()
@@ -46,26 +46,26 @@ template(name="ooColorPicker")
       button.js-setRandomAction(btn="tiny neutral-dim" data-action="select") Select
     each randomColors
       +ooColorSwatch classList="js-setRandomColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
-    .header-section
-      h4 Schemes
-      button.js-setSchemeAction(btn="tiny neutral-dim" data-action="addToFavorites") Add To Favorites
-      button.js-setSchemeAction(btn="tiny neutral-dim" data-action="select") Select
-    h5.scheme-title Analagous
-    each schemeAnalagous
-      +ooColorSwatch classList="js-setSchemeColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
-    h5.scheme-title Complements
-    each schemeComplements
-      +ooColorSwatch classList="js-setSchemeColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
-    h5.scheme-title Split Complements
-    each schemeSplitComplements
-      +ooColorSwatch classList="js-setSchemeColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
-    h5.scheme-title Triadic
-    each schemeTriadic
-      +ooColorSwatch classList="js-setSchemeColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
-    h5.scheme-title Tetradic
-    each schemeTetradic
-      +ooColorSwatch classList="js-setSchemeColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
-    h5.scheme-title Monochromatic
-    each schemeMonochromatic
-      +ooColorSwatch classList="js-setSchemeColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
+    //- .header-section
+    //-   h4 Schemes
+    //-   button.js-setSchemeAction(btn="tiny neutral-dim" data-action="addToFavorites") Add To Favorites
+    //-   button.js-setSchemeAction(btn="tiny neutral-dim" data-action="select") Select
+    //- h5.scheme-title Analagous
+    //- each schemeAnalagous
+    //-   +ooColorSwatch classList="js-setSchemeColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
+    //- h5.scheme-title Complements
+    //- each schemeComplements
+    //-   +ooColorSwatch classList="js-setSchemeColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
+    //- h5.scheme-title Split Complements
+    //- each schemeSplitComplements
+    //-   +ooColorSwatch classList="js-setSchemeColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
+    //- h5.scheme-title Triadic
+    //- each schemeTriadic
+    //-   +ooColorSwatch classList="js-setSchemeColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
+    //- h5.scheme-title Tetradic
+    //- each schemeTetradic
+    //-   +ooColorSwatch classList="js-setSchemeColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
+    //- h5.scheme-title Monochromatic
+    //- each schemeMonochromatic
+    //-   +ooColorSwatch classList="js-setSchemeColor" oo="push small" color=color isActive=isSelectedColor showStarBadge=isFavoritedColor
 
