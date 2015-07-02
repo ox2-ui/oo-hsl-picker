@@ -2,6 +2,7 @@
 var ooColorPickerHistory = new Meteor.Collection(null);
 var ooColorPickerFavorites = new Meteor.Collection(null);
 
+
 Template.ooColorPicker.onCreated(function () {
   var self = this;
   var color = Color("hsl(180, 50%, 50%)");
@@ -129,9 +130,6 @@ Template.ooColorPicker.helpers({
   prevColor : function () {
     return Template.instance().prevColor.get();
   },
-  historyColors : function () {
-    return ooColorPickerHistory.find({}, {sort: {createdAt: -1}});
-  },
   favoriteColors : function () {
     return ooColorPickerFavorites.find({}, {sort: {createdAt: -1}});
   },
@@ -177,72 +175,6 @@ Template.ooColorPicker.helpers({
   },
   colorSchemeButtons: function() {
     return ["analogous", "monochromatic", "splitcomplement", "triad", "tetrad"]
-  },
-  schemeComplements: function() {
-    var currentColor = Color(Template.instance().getCurrentHslString())
-
-    var complement = { color: currentColor.clone().rotate(180).hslString() }
-    var complementA = { color: currentColor.clone().rotate(180).darken(0.1).hslString() }
-    var complementB = { color: currentColor.clone().rotate(180).lighten(0.1).hslString() }
-
-    return [{color: currentColor.hslString()}, complement, complementA, complementB]
-  },
-  schemeSplitComplements: function() {
-    var currentColor = Color(Template.instance().getCurrentHslString())
-
-    var splitA =  { color: currentColor.clone().rotate(180+15).hslString() }
-    var splitB =  { color: currentColor.clone().rotate(180-15).hslString() }
-    var splitC =  { color: currentColor.clone().rotate(180+30).hslString() }
-    var splitD =  { color: currentColor.clone().rotate(180-30).hslString() }
-
-    return [splitA, splitB, {color: currentColor.hslString()}, splitC, splitD]
-  },
-  schemeTriadic: function() {
-    var currentColor = Color(Template.instance().getCurrentHslString())
-
-    var triadicA = { color: currentColor.clone().rotate(180-60).hslString() }
-    var triadicB = { color: currentColor.clone().rotate(180+60).hslString() }
-    var triadicC = { color: currentColor.clone().rotate(180-75).hslString() }
-    var triadicD = { color: currentColor.clone().rotate(180+75).hslString() }
-
-    return [triadicA, triadicB, {color: currentColor.hslString()}, triadicC, triadicD]
-  },
-  schemeTetradic: function() {
-    var currentColor = Color(Template.instance().getCurrentHslString())
-
-    var tetradA = { color: currentColor.clone().rotate(180).hslString() }
-    var tetradB = { color: currentColor.clone().rotate(180+30).hslString() }
-    var tetradC = { color: currentColor.clone().rotate(30).hslString() }
-
-    return [{color: currentColor.hslString()}, tetradA, tetradB, tetradC, ]
-  },
-  schemeMonochromatic: function() {
-    var currentColor = Color(Template.instance().getCurrentHslString())
-
-    var monA = { color: currentColor.clone().lighten(0.4).hslString() }
-    var monB = { color: currentColor.clone().lighten(0.3).hslString() }
-    var monC = { color: currentColor.clone().lighten(0.2).hslString() }
-    var monD = { color: currentColor.clone().lighten(0.1).hslString() }
-    var monE = { color: currentColor.clone().darken(0.1).hslString() }
-    var monF = { color: currentColor.clone().darken(0.2).hslString() }
-    var monG = { color: currentColor.clone().darken(0.3).hslString() }
-    var monH = { color: currentColor.clone().darken(0.4).hslString() }
-
-    return [monA, monB, monC, monD, {color: currentColor.hslString()}, monE, monF, monG, monH]
-  },
-  schemeAnalagous: function() {
-    var currentColor = Color(Template.instance().getCurrentHslString())
-
-    var analogA = { color: currentColor.clone().rotate(-40).hslString() }
-    var analogB = { color: currentColor.clone().rotate(-30).hslString() }
-    var analogC = { color: currentColor.clone().rotate(-20).hslString() }
-    var analogD = { color: currentColor.clone().rotate(-10).hslString() }
-    var analogE = { color: currentColor.clone().rotate(10).hslString() }
-    var analogF = { color: currentColor.clone().rotate(20).hslString() }
-    var analogG = { color: currentColor.clone().rotate(30).hslString() }
-    var analogH = { color: currentColor.clone().rotate(40).hslString() }
-
-    return [analogA, analogB, analogC, analogD, {color: currentColor.hslString()}, analogE, analogF, analogG, analogH]
   },
   hueGradient: function() {
     var steps = 36;
@@ -425,6 +357,7 @@ Template.ooColorPicker.events({
   'click .js-setFavoriteColor' : function (e, t) {
     var self = this;
     t.setCurrentHsl(self.color);
+    t.addHistoryRecord();
 
   },
   'click .js-setSchemeAction' : function (e, t) {
@@ -487,3 +420,10 @@ Template.ooColorPicker.events({
     t.addHistoryRecord();
   }
 });
+
+Template.ooColorPicker_History.helpers({
+  historyColors : function () {
+    return ooColorPickerHistory.find({}, {sort: {createdAt: -1}});
+  }
+});
+

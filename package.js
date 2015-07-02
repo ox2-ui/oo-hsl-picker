@@ -18,7 +18,9 @@ Package.onUse(function(api) {
   // 3rd party
   api.use([
     'lauricio:less-autoprefixer@1.0.7',
-    'mquandalle:jade@0.4.1'
+    'mquandalle:jade@0.4.1',
+    'aldeed:template-extension@3.4.3',
+    'grigio:babel@0.1.4'
     ]);
   // ox2
   api.use([
@@ -27,7 +29,8 @@ Package.onUse(function(api) {
   api.addFiles([
     'lib/oo-hsl-picker.jade',
     'lib/inputstyles.html',
-    'lib/oo-hsl-picker.js',
+    'lib/oo-hsl-picker.es6',
+    'lib/oo-color-schemes.jsx',
     'lib/oo-hsl-picker.less',
   ], C);
 });
