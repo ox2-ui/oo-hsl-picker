@@ -30,7 +30,7 @@ Package.onUse(function(api) {
     'lib/oo-hsl-picker.jade',
     'lib/inputstyles.html',
     'lib/oo-hsl-picker.es6',
-    'lib/oo-color-schemes.jsx',
+    'lib/oo-color-schemes.es6',
     'lib/oo-hsl-picker.less',
   ], C);
 });

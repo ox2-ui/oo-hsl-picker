@@ -426,4 +426,3 @@ Template.ooColorPicker_History.helpers({
     return ooColorPickerHistory.find({}, {sort: {createdAt: -1}});
   }
 });
-
